@@ -1,0 +1,1 @@
+{"name":"Local: apartments","url":"d:\\placement\\dsa\\apartments.cpp","tests":[{"id":1683565163429,"input":"4 3 5\n60 45 80 60\n30 60 75","output":""}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"d:\\placement\\dsa\\apartments.cpp","group":"local","local":true}
