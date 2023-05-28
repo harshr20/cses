@@ -26,21 +26,10 @@ void work(){
 	vll rate(n), cust(m);
 	inp(rate);
 	inp(cust);
-	sort(rate.begin(),rate.end());
-	//cout<<*lower_bound(rate.begin(),rate.end());
-	ll i = 0;
-	while(i<m){
-		auto idx = upper_bound(rate.begin(),rate.end(),cust[i++]);
-		if(idx == rate.end()){
-			cout<<-1<<endl;
-			continue;
-		}
-		cout<<ll(*idx)<<endl;
-		rate.erase(idx);
-	} 
-	while(i++<m)cout<<-1<<endl;
+	// insert rate into bst
+	// o(nlogn)
 	
-	
+
 }
 
 int main(){

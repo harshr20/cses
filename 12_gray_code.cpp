@@ -14,21 +14,29 @@ const int MOD = 1e9 + 7;
 #define lop(i, n)        for (int i = 0; i < (n); i++)
 #define inp(x)           for (auto &inps : x)cin >> inps
 #define raise(n,m)       int(pow(n,m))
-#define out(x)           for (auto outps : x)cout << outps <<" " 
+#define out(x)           for (auto outps : x)cout << outps <<endl
 
-void n_bit(string s,ll n){
-	if(n==0){
-		cout<<s<<endl;
-		return;
+vector<string> gray_code(int n){
+	if(n==1){
+		vector<string> curr= {"0","1"};
+		return curr;
 	}
-	n_bit(s+"0",n-1);
-	n_bit(s+"1",n-1);
+	vector<string> last = gray_code(n-1);
+	int nn = last.size();
+	vector<string> curr;
+	lop(i,nn){
+		curr.push_back('0'+last[i]);
+	}
+	lop(i,nn){
+		curr.push_back('1'+last[nn-1-i]);
+	}
+	return curr;
 }
 void work(){
 	// code from here
 	ll n;
 	cin>>n;
-	n_bit("",n);
+	out(gray_code(n));
 }
 
 int main(){

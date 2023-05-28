@@ -35,8 +35,8 @@ void work(){
 	vll v(n);
 	inp(v);
 	ll sum = 0, min_dif =LLONG_MAX;
-	sum = accumulate(v.begin(),v.end(),0);
-	cout<<sum<<endl<<min_dif<<endl;
+	sum = accumulate(v.begin(),v.end(),ll(0));
+	//cout<<sum<<endl<<min_dif<<endl;
 	diff(v,0,0,min_dif,sum);
 	cout<<min_dif;
 }

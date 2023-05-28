@@ -18,7 +18,7 @@ const int MOD = 1e9 + 7;
 #define inp(x)           for (auto &inps : x)cin >> inps
 #define raise(n,m)       int(pow(n,m))
 #define out(x)           for (auto outps : x)cout << outps <<" " 
-
+/*
 void pirint(int st,int end, int n){
 
 	cout << "YES" << endl<< end - st + 1 << endl;
@@ -32,6 +32,34 @@ void pirint(int st,int end, int n){
 	x=end+1;
 	while(x<=n)cout<<x++<<" ";
 
+}*/
+
+
+void print4n(int n){
+	cout<<"YES"<<endl<<n/2<<endl;
+	for(int i  = 0;i<n/4;i++){
+		cout<<4*i+1<<" "<<4*i+4<<" ";
+	}
+	cout<<endl<<n/2<<endl;
+	for(int i  = 0;i<n/4;i++){
+		cout<<4*i+2<<" "<<4*i+3<<" ";
+	}
+}
+
+void print4nplus1(int n){
+	cout<<"YES"<<endl<<n/2<<endl;
+	for(int i  = 1;i<=n/4;i++){
+		cout<<i<<" ";
+	}
+	for(int i  = n/4;i>0;i--){
+		cout<<n-i<<" ";
+	}
+
+	cout<<n<<endl<<n/2+1<<endl;
+	for(int i = n/4+1;i<=n-1-n/4;i++){
+		cout<<i<<" ";
+	}
+
 }
 void work(){
 	// code from here
@@ -41,13 +69,12 @@ void work(){
 		cout<<"NO"<<endl;
 		return;
 	}
-	if(n%2){
-		int st=n/2-n/4,end=n/2+n/4;
-		pirint(st,end,n);
+	if(n%4==0){
+		print4n(n);
 	}
 	else{
-		int st=n/2-n/4+1,end=n/2+n/4;
-		pirint(st,end,n);
+	//	int st=n/2-n/4+1,end=n/2+n/4;
+		print4nplus1(n);
 	}
 	
 }
