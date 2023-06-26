@@ -21,34 +21,31 @@ const int MOD = 1e9 + 7;
 #define mp(a,b)          make_pair(a,b)
 #define pb(x)            push_back(x)
 
-
-
+ll geometric_sum(ll a,ll b){
+	return (raise(a,b+1)-1)/(a-1)%MOD;
+}
+ll arithmetic_sum(ll a, ll b){
+	return a*b*(b+1)/2;
+}
 void work(){
 	// code from here
-	ll n,x;
-	cin>>n>>x;
-	vll price(n),pages(n);
-	inp(price);
-	inp(pages);
-	// n(x,i)=max(n(x-pr(i),i-1), b=n(x,i-1))
-	// pagem(x,i)=max(pagem(x-pr(i),i-1),pagem(x,i-1))
-	// cout<<solve(price,pages,n,x);
-	vll prev(x+1,0),pres(x+1);
+	ll n;
+	cin>>n;
+	vector<pii> v(n);
+	lop(i,n)cin>>v[i].first>>v[i].second;
+	// number of factors
+	ll n_factors=1,product_f =1,sum_factors=1;
 	lop(i,n){
-		lop(j,x+1){
-			if (j==0){
-				pres[j]=0;
-				continue;
-			}
-			if(j-price[i]>=0)
-			pres[j]=max(prev[j],pages[i]+prev[j-price[i]]);
-			else
-			pres[j]=prev[j];
-		}
-		prev=pres;
-		lop(i,x+1)pres[i]=0;
+		n_factors=(n_factors*(v[i].second+1))%MOD;
+		// sum_factors=(1+2+2^2...).(1+3+3^2...).
+		sum_factors=(sum_factors*geometric_sum(v[i].first,v[i].second))%MOD;
+		// product of factors
+		// 2 3 - (4) 
+		// 3 5 - (6)
+		// 5 1 - (2)
+		product_f=
 	}
-	cout<<prev[x];
+	cout<<n_factors<<" "<<sum_factors;
 }
 
 int main(){

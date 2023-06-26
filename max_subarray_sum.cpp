@@ -26,12 +26,11 @@ void work(){
 
 	ll max_sum = 0,cur_sum = 0;
 	lop(i,n){
-		if(v[i]+cur_sum<0){
-			max_sum = max(max_sum,cur_sum);
-			cur_sum = 0;
-		}
-		cur_sum += v[i];
+		if(cur_sum<0)cur_sum=0;
+		cur_sum+=v[i];
+		max_sum=max(max_sum,cur_sum);
 	}
+	if(max_sum<=0)max_sum=*max_element(v.begin(),v.end());
 	cout<<max_sum;
 }
 

@@ -1,0 +1,1 @@
+{"name":"Local: cp6","url":"d:\\placement\\dsa\\cf\\cp6.py","tests":[{"id":1685293186646,"input":"5\n1 2\n2 1\n2 2\n10 2\n179 100\n","output":""}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"d:\\placement\\dsa\\cf\\cp6.py","group":"local","local":true}

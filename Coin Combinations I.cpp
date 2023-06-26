@@ -20,6 +20,7 @@ const int MOD = 1e9 + 7;
 #define out(x)           for (auto outps : x)cout << outps <<" " 
 
 
+// s(i)=sum(s(i-vj)) 
 void work(){
 	// code from here
 	ll n,tar;
@@ -28,12 +29,12 @@ void work(){
 	inp(v);
 
 	vll dp(tar+1,0);
-	dp[0] = 0;
-	lop(i,n)dp[v[i]] = 1;
-
+	dp[0] = 1;
+	
 	lop(i,tar+1){
+		if(i==0)continue;
 		lop(j, n){
-			if(i-v[j]>0)dp[i]+=dp[i-v[j]];
+			if(i-v[j]>=0)dp[i]=(dp[i]+dp[i-v[j]])%MOD;
 		}
 	}
 	cout<<dp[tar];

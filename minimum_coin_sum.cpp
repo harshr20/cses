@@ -21,22 +21,20 @@ const int MOD = 1e9 + 7;
 
 void work(){
 	// code from here
-	ll n,tar;
-	cin>>n>>tar;
+	ll n,s=0;
+	cin>>n;
 	vll v(n);
 	inp(v);
-
-	vll dp(tar+1,0);
-	lop(i,n)dp[v[i]]=1;
-
-	lop(i,tar+1){
-		lop(j,n){
-			if(i-v[j]>0)dp[i]+=dp[i-v[j]];
+	sort(v.begin(),v.end());
+	//  1 2 2 7 9
+	lop(i,n){
+		 if(v[i]>s+1){
+			cout<<s+1;
+			return;
 		}
+		s += v[i];
 	}
-	cout<<dp[tar];
-
-	
+	cout<<s+1;
 }
 
 int main(){

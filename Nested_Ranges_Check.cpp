@@ -18,39 +18,53 @@ const int MOD = 1e9 + 7;
 #define inp(x)           for (auto &inps : x)cin >> inps
 #define raise(n,m)       int(pow(n,m))
 #define out(x)           for (auto outps : x)cout << outps <<" " 
-#define mp(a,b)          make_pair(a,b)
+#define mp(a,b)		 make_pair(a,b)
 #define pb(x)            push_back(x)
 
-
+bool compare(pii x, pii y){
+	int a1=x.first,a2=x.second,b1=y.first,b2=y.second;
+	if(a1<b1)return true;
+	if(a1>b1)return false;
+	if(a2>b2)return true;
+	return false;
+}
 
 void work(){
 	// code from here
-	ll n,x;
-	cin>>n>>x;
-	vll price(n),pages(n);
-	inp(price);
-	inp(pages);
-	// n(x,i)=max(n(x-pr(i),i-1), b=n(x,i-1))
-	// pagem(x,i)=max(pagem(x-pr(i),i-1),pagem(x,i-1))
-	// cout<<solve(price,pages,n,x);
-	vll prev(x+1,0),pres(x+1);
+	ll n;
+	cin>>n;
+	//n^2 gg
+	vector<pii> v(n);
 	lop(i,n){
-		lop(j,x+1){
-			if (j==0){
-				pres[j]=0;
-				continue;
-			}
-			if(j-price[i]>=0)
-			pres[j]=max(prev[j],pages[i]+prev[j-price[i]]);
-			else
-			pres[j]=prev[j];
-		}
-		prev=pres;
-		lop(i,x+1)pres[i]=0;
+		int x,y;
+		cin>>x>>y;
+		v[i]=mp(x,y);
 	}
-	cout<<prev[x];
-}
+	sort(v.begin(),v.end(),compare);
+	int r_largest=0;
+	vi contained(n,0),contains(n,0);
+	lop(i,n){
+		if(v[i].second<=r_largest)contained[i]=1;
+		r_largest=max(r_largest,v[i].second);
+	}
+	int r_smallest=INT_MAX;
+	lop(i,n){
+		if(r_smallest<=v[n-1-i].second)contains[n-1-i]=1;
+		r_smallest=min(r_smallest,v[n-1-i].second);
+	}
+	lop(i,n){
+		cout<<v[i].first<<" "<<v[i].second;
+		cout<<endl;
+	}
+	cout<<endl;
+	out(contains);
+	cout<<endl;
+	out(contained);
+	// argsort
+	
 
+}
+// leave and go college please not stay here
 int main(){
 	fio;
 	work();

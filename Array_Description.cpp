@@ -18,20 +18,53 @@ const int MOD = 1e9 + 7;
 #define inp(x)           for (auto &inps : x)cin >> inps
 #define raise(n,m)       int(pow(n,m))
 #define out(x)           for (auto outps : x)cout << outps <<" " 
-int solve(int m,vi v, int i){
-	if(i == -1 || v[i]>m )return 0;
-	if(v[i]!=0)return solve(m,v,i-1);
-	v[i]=v[i]
-	return 
-	
+#define mp(a,b)          make_pair(a,b)
+#define pb(x)            push_back(x)
+
+
+//202
+// if()
+ll ans=0;
+void check(vll v,int i,int m){
+	if(i==v.size()){
+		ans++;
+		return;
+	}
+	//cout<<i<<":";
+	//out(v);
+	cout<<endl;
+	if(v[i]==0){
+		v[i]=v[i-1];
+		check(v,i+1,m);
+		if(v[i-1]>1){
+			v[i]=v[i-1]-1;
+			check(v,i+1,m);
+		}
+		if(v[i-1]<m){
+			v[i]=v[i-1]+1;
+			check(v,i+1,m);
+		}
+	}
+	else{
+		if(abs(v[i]-v[i-1])>1)return;
+		else check(v,i+1,m);
+	}
 }
 void work(){
 	// code from here
-	int n,m;
+	ll n,m;
 	cin>>n>>m;
-	vi v(n);
+	vll v(n);
 	inp(v);
-	
+
+	if(v[0]!=0)check(v,1,m);
+	else{
+		lop(i,m){
+			v[0]=i+1;
+			check(v,1,m);
+		}
+	}
+	cout<<ans;
 }
 
 int main(){

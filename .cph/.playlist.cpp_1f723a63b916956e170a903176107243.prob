@@ -1,0 +1,1 @@
+{"name":"Local: playlist","url":"d:\\placement\\dsa\\playlist.cpp","tests":[{"id":1685605093874,"input":"8\n1 2 1 3 2 7 4 2\n","output":""}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"d:\\placement\\dsa\\playlist.cpp","group":"local","local":true}

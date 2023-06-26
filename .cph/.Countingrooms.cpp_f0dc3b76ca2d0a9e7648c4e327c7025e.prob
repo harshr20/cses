@@ -1,0 +1,1 @@
+{"name":"Local: Countingrooms","url":"d:\\placement\\dsa\\Countingrooms.cpp","tests":[{"id":1685610222291,"input":"5 8\n########\n#..#...#\n####.#.#\n#..#...#\n########","output":""}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"d:\\placement\\dsa\\Countingrooms.cpp","group":"local","local":true}

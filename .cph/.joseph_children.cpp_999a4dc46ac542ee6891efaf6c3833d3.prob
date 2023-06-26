@@ -1,0 +1,1 @@
+{"name":"Local: joseph_children","url":"d:\\placement\\dsa\\joseph_children.cpp","tests":[{"id":1685271189675,"input":"4\n7 1\n7 3\n2 2\n1337 1313\n","output":""}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"d:\\placement\\dsa\\joseph_children.cpp","group":"local","local":true}

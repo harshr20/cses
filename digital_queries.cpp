@@ -19,7 +19,7 @@ const int MOD = 1e9 + 7;
 #define raise(n,m)       int(ceil(pow(n,m)))
 #define out(x)           for (auto outps : x)cout << outps <<" " 
 
-void work(){
+/*void work(){
 	// code from here
 	ll n;
 	cin>>n;
@@ -42,6 +42,21 @@ void work(){
 	string s = to_string(p);
 	cout<<s[(n-1)%i]<<endl;
 	
+}*/
+
+void work(){
+	ll n;
+	cin>>n;
+	ll x=0,y=9,i=1;
+	while(x<n){
+		x+=y*i;
+		y*=10;
+		i++;
+	}
+	x-=y*i;
+	i-=1;
+	y/=10;
+	n-=x;
 }
 
 int main(){

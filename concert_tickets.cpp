@@ -1,6 +1,6 @@
 #include <bits/stdc++.h>
 using namespace std;
-
+//multiset
 typedef long long int ll;
 typedef unsigned long long ull;
 typedef long double ld;
@@ -18,18 +18,32 @@ const int MOD = 1e9 + 7;
 #define inp(x)           for (auto &inps : x)cin >> inps
 #define raise(n,m)       int(pow(n,m))
 #define out(x)           for (auto outps : x)cout << outps <<" " 
+#define mp(a,b)          make_pair(a,b)
+#define pb(x)            push_back(x)
 
 void work(){
 	// code from here
 	ll n,m;
 	cin>>n>>m;
-	vll rate(n), cust(m);
-	inp(rate);
-	inp(cust);
-	// insert rate into bst
-	// o(nlogn)
-	
-
+	multiset<ll> ms;
+	lop(i,n){
+		ll x;
+		cin>>x;
+		ms.insert(x);
+	}	
+	lop(i,m){
+		ll c;
+		cin>>c;
+		auto it = ms.upper_bound(c);
+		if(it==ms.begin()){
+			cout<<-1<<endl;
+			
+		}
+		else{
+			cout<<*(--it)<<endl;
+			ms.erase(it);
+		}
+	}
 }
 
 int main(){

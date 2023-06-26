@@ -18,28 +18,36 @@ const int MOD = 1e9 + 7;
 #define inp(x)           for (auto &inps : x)cin >> inps
 #define raise(n,m)       int(pow(n,m))
 #define out(x)           for (auto outps : x)cout << outps <<" " 
+#define mp(a,b)          make_pair(a,b)
+#define pb(x)            push_back(x)
 
-2
-ll min_dig(ll n){
-	if(n==0)return 0;
-	if(n<0) return INT_MAX;
-	ll n_dup=n, ans = INT_MAX;
-	
-	while(n_dup){
-		ll d = n_dup%10;
-		if(d!=0)ans =min(ans,1+min_dig(n-d));
-		n_dup/=10;
+vector<int> getdigits(ll num){
+	vector<int> dig(10,0);
+	while(num){
+		dig[num%10]=1;
+		num/=10;
 	}
-	return ans;
+	return dig;
 }
+
 void work(){
 	// code from here
+	//s(i)=min(1+s(i-j)) for all js
 	ll n;
 	cin>>n;
-	//cout<<min_dig(n);
-	vi v(n+1,0);
-
-
+	vll dp(n+1,0);
+	dp[0]=0;
+	for(int i =1;i<n+1;i++){
+		//generate all the digits of number
+		vector<int> dig=getdigits(i);
+		ll ans=INT_MAX;
+		for(int j=1;j<10;j++){
+			ll di=dig[j];
+			if(di && i-j>=0)ans=1+min(ans,dp[i-j]);
+		}
+		if(ans!=INT_MAX)dp[i]=ans;
+	}
+	cout<<dp[n];
 	
 }
 

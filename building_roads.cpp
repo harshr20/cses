@@ -18,37 +18,60 @@ const int MOD = 1e9 + 7;
 #define inp(x)           for (auto &inps : x)cin >> inps
 #define raise(n,m)       int(pow(n,m))
 #define out(x)           for (auto outps : x)cout << outps <<" " 
-#define mp(a,b)          make_pair(a,b)
+#define make_pair(a,b)   mp(a,b)
 #define pb(x)            push_back(x)
 
-
+void dfs(vvi v,int i,vi &visited){
+	stack<int> s;
+	s.push(i);
+	while(!s.empty()){
+		int node=s.top();
+		s.pop();
+		for(auto x:v[node]){
+			if(visited[x]==0){
+				visited[x]=1;
+				s.push(x);
+			}
+		}
+	}
+}
 
 void work(){
 	// code from here
-	ll n,x;
-	cin>>n>>x;
-	vll price(n),pages(n);
-	inp(price);
-	inp(pages);
-	// n(x,i)=max(n(x-pr(i),i-1), b=n(x,i-1))
-	// pagem(x,i)=max(pagem(x-pr(i),i-1),pagem(x,i-1))
-	// cout<<solve(price,pages,n,x);
-	vll prev(x+1,0),pres(x+1);
-	lop(i,n){
-		lop(j,x+1){
-			if (j==0){
-				pres[j]=0;
-				continue;
-			}
-			if(j-price[i]>=0)
-			pres[j]=max(prev[j],pages[i]+prev[j-price[i]]);
-			else
-			pres[j]=prev[j];
-		}
-		prev=pres;
-		lop(i,x+1)pres[i]=0;
+	int n,m;
+	cin>>n>>m;
+	// i want n and n-1 roads
+	/*if(2*n==m){
+		cout<<0;
+		return;
+	}*/
+	vector<vector<int>> v(n+1);
+	lop(i,m){
+		int a,b;
+		cin>>a>>b;
+		v[a].pb(b);
+		v[b].pb(a);
 	}
-	cout<<prev[x];
+	vi visited(n+1,0);
+	int ans = 0;
+	// cout<<"okay";
+	// return;
+	vi head;
+	lop(i,n){
+		if(i==0)continue;
+		if(visited[i]==0){
+			visited[i]=1;
+			head.pb(i);
+			dfs(v,i,visited);
+			ans++;
+		}
+	}
+	cout<<ans-1<<endl;
+	lop(i,ans-1){
+		cout<<head[i]<<" "<<head[i+1]<<endl;
+	}
+
+
 }
 
 int main(){

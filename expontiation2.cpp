@@ -18,41 +18,28 @@ const int MOD = 1e9 + 7;
 #define inp(x)           for (auto &inps : x)cin >> inps
 #define raise(n,m)       int(pow(n,m))
 #define out(x)           for (auto outps : x)cout << outps <<" " 
-#define mp(a,b)          make_pair(a,b)
-#define pb(x)            push_back(x)
 
-
-
+ll solve(ll a,ll b){
+	if(a==0 && b)return 0;
+	if(b==0 || a==0)return 1;
+	ll lol = solve(a,b/2)%MOD;
+	if(b%2)return (((lol*lol)%MOD)*a)%MOD;
+	else return (lol*lol)%MOD;
+}
 void work(){
 	// code from here
-	ll n,x;
-	cin>>n>>x;
-	vll price(n),pages(n);
-	inp(price);
-	inp(pages);
-	// n(x,i)=max(n(x-pr(i),i-1), b=n(x,i-1))
-	// pagem(x,i)=max(pagem(x-pr(i),i-1),pagem(x,i-1))
-	// cout<<solve(price,pages,n,x);
-	vll prev(x+1,0),pres(x+1);
-	lop(i,n){
-		lop(j,x+1){
-			if (j==0){
-				pres[j]=0;
-				continue;
-			}
-			if(j-price[i]>=0)
-			pres[j]=max(prev[j],pages[i]+prev[j-price[i]]);
-			else
-			pres[j]=prev[j];
-		}
-		prev=pres;
-		lop(i,x+1)pres[i]=0;
-	}
-	cout<<prev[x];
+	ll a,b,c;
+	cin>>a>>b>>c;
+	cout<<solve(a,solve(b,c))<<endl;
+	//cout<<solve(solve(a, b), c)<< " "<<solve(a,solve(b,c));
 }
 
 int main(){
 	fio;
-	work();
+	   ll t;
+	   cin>>t;
+	   while(t--){
+		   work();
+	   }
 	return 0;
 }

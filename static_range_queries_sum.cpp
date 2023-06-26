@@ -21,38 +21,26 @@ const int MOD = 1e9 + 7;
 #define mp(a,b)          make_pair(a,b)
 #define pb(x)            push_back(x)
 
-
-
 void work(){
 	// code from here
-	ll n,x;
-	cin>>n>>x;
-	vll price(n),pages(n);
-	inp(price);
-	inp(pages);
-	// n(x,i)=max(n(x-pr(i),i-1), b=n(x,i-1))
-	// pagem(x,i)=max(pagem(x-pr(i),i-1),pagem(x,i-1))
-	// cout<<solve(price,pages,n,x);
-	vll prev(x+1,0),pres(x+1);
-	lop(i,n){
-		lop(j,x+1){
-			if (j==0){
-				pres[j]=0;
-				continue;
-			}
-			if(j-price[i]>=0)
-			pres[j]=max(prev[j],pages[i]+prev[j-price[i]]);
-			else
-			pres[j]=prev[j];
-		}
-		prev=pres;
-		lop(i,x+1)pres[i]=0;
-	}
-	cout<<prev[x];
+	
 }
 
 int main(){
 	fio;
-	work();
+	ll n,q,last;
+	cin>>n>>q;
+	vll sum(n+1);
+	sum[0]=0;
+	lop(i,n+1){
+		 if(i==0)continue;
+		cin>>last;
+		sum[i]=sum[i-1]+last;
+	}
+	int a, b;
+	lop(i,q){
+		cin>> a>>b;
+		cout<<sum[b]-sum[a-1]<<endl;
+	}
 	return 0;
 }

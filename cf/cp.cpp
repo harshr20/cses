@@ -21,27 +21,12 @@ const int MOD = 1e9 + 7;
 
 void work(){
 	// code from here
-	ll n,k;
-	cin>>n>>k;
-	vll v(n);
-	inp(v);
-
-	sort(v.begin(),v.end());
-	//int n =v.size();
-	ll i = -1, j=v.size()-k;
-	ll l_sum = 0, r_sum =accumulate(v.end()-k,v.end(),ll(0)),tot_sum,real=LLONG_MAX;
-	if(k>=n){cout<<0<<endl;return;}
-	while(j<=n){
-		tot_sum = l_sum + r_sum;
-		real = min(real,tot_sum);
-		i+=2;
-		j++;
-		l_sum+=v[i]+v[i-1];
-		r_sum -=v[j-1];
+	string s1,s2;
+	cin>>s1>>s2;
+	ll ans=0;
+	for(int i=0;i<s1.size();i++){
+		
 	}
-	cout<<accumulate(v.begin(),v.end(),ll(0))-real<<endl;
-	// 15 22 12 10 13 11
-	// 10 11 -12 13 15 -22-
 }
 
 int main(){

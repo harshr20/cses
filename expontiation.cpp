@@ -19,13 +19,26 @@ const int MOD = 1e9 + 7;
 #define raise(n,m)       int(pow(n,m))
 #define out(x)           for (auto outps : x)cout << outps <<" " 
 
+ll solve(ll a,ll b){
+	if(a==0 && b)return 0;
+	if(b==0 || a==0)return 1;
+	ll lol = solve(a,b/2)%MOD;
+	if(b%2)return (((lol*lol)%MOD)*a)%MOD;
+	else return (lol*lol)%MOD;
+}
 void work(){
 	// code from here
-	cout<<ceil(1.0*5/2);
+	ll a,b,c;
+	cin>>a>>b;
+	cout<<solve(a,b)<<endl;
 }
 
 int main(){
 	fio;
-	work();
+	   ll t;
+	   cin>>t;
+	   while(t--){
+		   work();
+	   }
 	return 0;
 }

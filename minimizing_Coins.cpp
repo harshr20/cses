@@ -18,23 +18,28 @@ const int MOD = 1e9 + 7;
 #define inp(x)           for (auto &inps : x)cin >> inps
 #define raise(n,m)       int(pow(n,m))
 #define out(x)           for (auto outps : x)cout << outps <<" " 
+#define mp(a,b)          make_pair(a,b)
+#define pb(x)            push_back(x)
 
 void work(){
 	// code from here
-	ll n, tar;
+	ll n,tar;
 	cin>>n>>tar;
 	vll v(n);
 	inp(v);
 
-	int dp[tar+1][n];
-	for(int i = 0;i<n;i++)dp[0][i]=1;
-	lop(i,tar+1)dp[i][0]=1;
-
-	for(int i = 1;i<tar+1;i++){
-		for(int j =1;j<n;j++){
-			
+	vll dp(tar+1,-1);
+	dp[0]=0;
+	for(int i =1;i<tar+1;i++){
+		ll cur_ans=INT_MAX;
+		for(int j=0;j<n;j++){
+			if(i-v[j]>=0 && dp[i-v[j]]!=-1)
+			cur_ans=min(cur_ans,1+dp[i-v[j]]);
 		}
+		if(cur_ans==INT_MAX)dp[i]=-1;
+		else dp[i]=cur_ans;
 	}
+	cout<<dp[tar];	
 }
 
 int main(){

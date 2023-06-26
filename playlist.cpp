@@ -18,37 +18,36 @@ const int MOD = 1e9 + 7;
 #define inp(x)           for (auto &inps : x)cin >> inps
 #define raise(n,m)       int(pow(n,m))
 #define out(x)           for (auto outps : x)cout << outps <<" " 
-#define mp(a,b)          make_pair(a,b)
-#define pb(x)            push_back(x)
-
-
 
 void work(){
 	// code from here
-	ll n,x;
-	cin>>n>>x;
-	vll price(n),pages(n);
-	inp(price);
-	inp(pages);
-	// n(x,i)=max(n(x-pr(i),i-1), b=n(x,i-1))
-	// pagem(x,i)=max(pagem(x-pr(i),i-1),pagem(x,i-1))
-	// cout<<solve(price,pages,n,x);
-	vll prev(x+1,0),pres(x+1);
-	lop(i,n){
-		lop(j,x+1){
-			if (j==0){
-				pres[j]=0;
-				continue;
-			}
-			if(j-price[i]>=0)
-			pres[j]=max(prev[j],pages[i]+prev[j-price[i]]);
-			else
-			pres[j]=prev[j];
+	ll n;
+	cin>>n;
+	vll v(n);
+	inp(v);
+
+	ll i=0,j=0,ans =0;
+	set<ll> s;
+	while(i<n){
+		ll now = v[i];
+		if(s.find(now)==s.end()){
+			//curr_len++;
+			s.insert(now);
 		}
-		prev=pres;
-		lop(i,x+1)pres[i]=0;
+		else{
+			while(j<i){
+				s.erase(v[j]);
+				if(v[j++]==now){
+					s.insert(now);
+					break;
+				}
+			}
+		}
+		ans = max(ans, i - j + 1);
+		i++;
 	}
-	cout<<prev[x];
+	cout<<ans;
+	
 }
 
 int main(){
